@@ -1,0 +1,15 @@
+.jumbotron{
+  height: 700px;
+}
+
+button{
+  width: 200px;
+}
+
+.btnContainer{
+  padding: 200px;
+}
+
+.quest{
+  font-size: 25px;
+}
