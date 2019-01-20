@@ -6,8 +6,9 @@ function Question(text, choices, answer){
   this.answer = answer;
   }
   //Write a function to varify if the correct answer was selected.
-  //Becasue the following function is being written above the constructor function, we first select the object name - "Question" - and apply a prototype to it. Set this corrctAnswer prototype funtion equal to a choice function. Choice is the parameter which will eventually equate to a user's click of one (1) of the four (4) choice options.
+  //Becasue the following function is being written outside the constructor function, we first select the object name - "Question" - and apply a prototype to it. Set this corrctAnswer prototype funtion equal to a choice function. Choice is the parameter which will eventually equate to a user's click of one (1) of the four (4) choice options.
   Questions.prototype.correctAnswer = function(choice){
-  //if the choice is equal to the answer, we will retrun choice === this.answer, meaning that we will return true.
+  
+    //if the choice is equal to the answer, we will retrun choice === this.answer, meaning that we will return true.
   return choice = this.answer;
   }

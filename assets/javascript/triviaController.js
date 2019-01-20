@@ -1,4 +1,4 @@
-//Write a function called Triva and isert a parameter called question.
+//Write a function called Triva and isert a parameter called questions.
 //Set the parameter question equal to a variable called this.questions.
 //This function contains the scores, the question index, and the questions.
 function Trivia(questions){
@@ -19,13 +19,14 @@ Trivia.prototype.isEnded = function(){
   return this.questions.length === this.questionIndex;
 }
 
-//function to determine whether or not the user's guess matches the correct answer
-//prototype is a keyword; it means...
-//implement the third index of the quesiton... we want to navigate to a new question even if the user has selected the wrong awswer
-//if the user's answer is correct, increase the score by 1
+//function to determine whether or not the user's guess matches the correct answer.
+//we want to navigate/advance to a new question even if the user has selected the wrong awswer
 Trivia.prototype.guess = function (answer){
-  this.questionIndex++;
+  
+  
+  //if the user's answer is correct, navigate/advance to a new question and increase the score by 1
   if(this.getQuestionIndex().correctAnswer(answer)){
   this.score++;
   }
+  this.questionIndex++;
 }
