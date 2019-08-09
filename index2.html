@@ -10,31 +10,39 @@
 
 <body>
   <div class="gameContainer">
-    <div id="trivia">
-      <h1>Trivia Game</h1>
+    <div id="title-area">
+      <h1>Gardening Trivia Game</h1>
+      <button type="button" class="btn btn-default btn-lg btn-primary startBtn">START</button>
+    </div>
+    
+    <div class="butttonContainer">
+        <p id="timeRemaining"></p>
+    </div>
+      
       <hr style="margin-bottom: 20px">
 
-      <p id="question"></p>
+      <div id="trivia">
+        <p id="question"></p>
+        <div class="btnContainer">
+          <button class="answerButton" id="choice0"></button>
+          <button class="answerButton" id="choice1"></button>
+          <button class="answerButton" id="choice2"></button>
+          <button class="answerButton" id="choice3"></button>
+        </div>
+    </div>
 
-      <div class="btnContainer">
-        <button id="btn0"><span id="choice0"></span></button>
-        <button id="btn1"><span id="choice1"></span></button>
-        <button id="btn2"><span id="choice2"></span></button>
-        <button id="btn3"><span id="choice3"></span></button>
-      </div>
       <hr style="margin-top: 50px">
+      
       <footer>
         <p id ="progress">Question X of Y</p>
-
       </footer>
-    </div>
-  </div>
+</div>
 
   <!-- <js link> -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous" ></script>
   <script src="assets/javascript/triviaController.js"></script>
   <script src="assets/javascript/app2.js"></script>
-  <script src="assets/javascript/questions.js"></script>
+  <!-- <script src="assets/javascript/questions.js"></script> -->
   
 
 </body>

@@ -7,7 +7,7 @@ var wrongAnswers;
 var intervalId;
 var questions = 
 {
-q1 :  ['What does API stand for?'],
+q1 :  ['This poisonous species can have white, blue, or pink flowers and is also known by the common name Larkspur.'],
 q2 :  ['What does AJAX stand for?'],
 q3 :  ['What does JSON stand for?'],
 q4 :  ['What is a REST API?'],
@@ -16,7 +16,7 @@ q6 :  ['What does ___________________________________?']
 };
 var answers = 
 {
-  answers1:  [{a:'Applied Physics Institute', b:'Associated Press International', c:'Application Program Interface', d:'Aloysius Poindexter Illuminati'}],
+  answers1:  [{a:'Delphinium', b:'Nerium', c:'Digitalis', d:'Aconitum'}],
   answers2:  [{a:'a1', b:'b1', c:'c1', d:'d1'}],
   answers3:  [{a:'a1', b:'b1', c:'c1', d:'d1'}],
   answers4:  [{a:'a1', b:'b1', c:'c1', d:'d1'}],
@@ -73,6 +73,7 @@ function timeRemaining(){
     disCorAnsw();
     }
   }
+
     function disCorAnsw (){
     //display correct answer: counter 1 = question 1; counter 2 = question 2;
       if(qCounter === 1){
@@ -90,6 +91,7 @@ function timeRemaining(){
         }, 5000);
       };
     }
+
 //create newDiv with class= "quest q1"; append newDiv with current question into btn-container; set timer.
 function quest1(){
   qCounter++;
@@ -101,6 +103,7 @@ function quest1(){
   $('.btnContainer').append('<button class="answerVal" value=0>' + answers.answers1[0][3] + '</button>');
   $('.btnContainer').append('<button class="answerVal" value=1>' + answers.answers1[0][4] + '</button>');
 }
+
   function quest2(){
     qCounter++;
     //add question to question input div
@@ -112,8 +115,9 @@ function quest1(){
     $('.btnContainer').append('<button class="answerVal" value=1>' + answers.answers2[0][4] + '</button>');
 
   }
+
     function chooseCheckAnswer(){ 
-      $('button').on('click', function(){
+      $('.answerButton').on('click', function(){
         var checkCorrectAnswer = $(this).attr('value');
         console.log(checkCorrectAnswer);
         clearInterval(interval);
@@ -126,7 +130,6 @@ function quest1(){
     });
   }
 
-  // var newDiv = $('<div class=" quest q1">');
   // var newDiv = $('<div class=" quest q1">');
   // newDiv.html(questions.q4);
   // $('.btnContainer').append(newDiv);

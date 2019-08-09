@@ -1,4 +1,4 @@
-//The Question function will havce three (3) parameters: the text of the question, the four (4) button choices, and the one (1) correct button answer.
+//The Question function will have three (3) parameters: the text of the question, the four (4) button choices, and the one (1) correct button answer.
 function Question(text, choices, answer){
   //the three (3) parameters are stored inisde these three (3) variables.
   this.text = text;

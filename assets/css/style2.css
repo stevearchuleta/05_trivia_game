@@ -2,9 +2,9 @@ body{
   background-color: grey;
 }
 .gameContainer{
-  background-color: #fff;
+  background-image: url(../images/full-bloom\ copy.png);
   width: 600px;
-  height: 500px;
+  height: 900px;
   margin: 0 auto;
   border: 2px solid #cbcbcb;
   border-radius: 50px;
@@ -13,7 +13,7 @@ body{
 }
 
 .gameContainer h1{
-  background-color: #57636e;
+  background-color: darkolivegreen;
   font-family: sans-serif;
   font-size: 60px;
   text-align: center;
@@ -28,7 +28,7 @@ font-size: 30px;
 color: #57636e;
 }
 
-#btn0{
+#choice0{
 /* background-color: #778977; */
 background-color: orange;
 width: 250px;
@@ -39,7 +39,7 @@ border: 1px solid #1d3c6a;
 border-radius: 50px;
 padding: 10px 10px;
 }
-#btn1{
+#choice1{
 background-color: lightskyblue;
 width: 250px;
 font-size: 20;
@@ -49,7 +49,7 @@ border: 1px solid #1d3c6a;
 border-radius: 50px;
 padding: 10px 10px;
 }
-#btn2{
+#choice2{
 background-color: blueviolet;
 width: 250px;
 font-size: 20;
@@ -59,7 +59,7 @@ border: 1px solid #1d3c6a;
 border-radius: 50px;
 padding: 10px 10px;
 }
-#btn3{
+#choice3{
 background-color: yellowgreen;
 width: 250px;
 font-size: 20;
@@ -81,10 +81,10 @@ padding: 10px 10px;
   font-size: 18px;
 }
 
-#btn0:hover, #btn1:hover, #btn2:hover, #btn3:hover{
+#choice0:hover, #choice1:hover, #choice2:hover, #choice3:hover, .gameContainer h1:hover{
   background-color: #67636e;
   cursor: pointer;
 }
-#btn0:focus, #btn1:focus, #btn2:focus, #btn3:focus{
+#choice0:focus, #choice1:focus, #choice2:focus, #choice3:focus, .gameContainer h1:hover{
 outline: 0;
 }
