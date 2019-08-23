@@ -1,154 +1,238 @@
-//global variables
-var time = 20;
+
+var time;
+var seconds;
 var qCounter = 0;
-var hiddenImage = false;
+var currentQuestion;
 var correctAnswers;
 var wrongAnswers;
-var intervalId;
-var questions = 
-{
-q1 :  ['This poisonous species can have white, blue, or pink flowers and is also known by the common name Larkspur.'],
-q2 :  ['What does AJAX stand for?'],
-q3 :  ['What does JSON stand for?'],
-q4 :  ['What is a REST API?'],
-q5 :  ['What is the jQuery AJAX method to request data?'],
-q6 :  ['What does ___________________________________?']
-};
-var answers = 
-{
-  answers1:  [{a:'Delphinium', b:'Nerium', c:'Digitalis', d:'Aconitum'}],
-  answers2:  [{a:'a1', b:'b1', c:'c1', d:'d1'}],
-  answers3:  [{a:'a1', b:'b1', c:'c1', d:'d1'}],
-  answers4:  [{a:'a1', b:'b1', c:'c1', d:'d1'}],
-  answers5:  [{a:'a1', b:'b1', c:'c1', d:'d1'}],
-  answers6:  [{a:'a1', b:'b1', c:'c1', d:'d1'}],
-};
-console.log(questions.q2);
-console.log(answers.answers1[0]);
+var correctAnswer;
+var incorrectAnswer;
+var answered;
+var unanswered;
+var userSelect;
 
-//functions
-function startGame(){
 
+var triviaQuestions = 
+[{
+  question :  '1. This poisonous species can have white, blue, or pink flowers and is also known by the common name Larkspur.',
+  answerList: ['Delphinium', 'Nerium', 'Digitalis', 'Aconitum'],
+  answer: 0
+},{
+  question :  '2. This poisonous species can have white, blue, or pink flowers and is also known by the common name Larkspur.',
+  answerList: ['Delphinium', 'Nerium', 'Digitalis', 'Aconitum'],
+  answer: 0
+},{
+  question :  '3. This poisonous species can have white, blue, or pink flowers and is also known by the common name Larkspur.',
+  answerList: ['Delphinium', 'Nerium', 'Digitalis', 'Aconitum'],
+  answer: 0
+},{
+  question :  '4. This poisonous species can have white, blue, or pink flowers and is also known by the common name Larkspur.',
+  answerList: ['Delphinium', 'Nerium', 'Digitalis', 'Aconitum'],
+  answer: 0
+},{
+  question :  '5. This poisonous species can have white, blue, or pink flowers and is also known by the common name Larkspur.',
+  answerList: ['Delphinium', 'Nerium', 'Digitalis', 'Aconitum'],
+  answer: 0
+},{
+  question :  '6. This poisonous species can have white, blue, or pink flowers and is also known by the common name Larkspur.',
+  answerList: ['Delphinium', 'Nerium', 'Digitalis', 'Aconitum'],
+  answer: 0
+},{
+  question :  '7. This poisonous species can have white, blue, or pink flowers and is also known by the common name Larkspur.',
+  answerList: ['Delphinium', 'Nerium', 'Digitalis', 'Aconitum'],
+  answer: 0
+},{
+  question :  '8. This poisonous species can have white, blue, or pink flowers and is also known by the common name Larkspur.',
+  answerList: ['Delphinium', 'Nerium', 'Digitalis', 'Aconitum'],
+  answer: 0
+},{
+  question :  '9. This poisonous species can have white, blue, or pink flowers and is also known by the common name Larkspur.',
+  answerList: ['Delphinium', 'Nerium', 'Digitalis', 'Aconitum'],
+  answer: 0
+},{
+  question :  '10. This poisonous species can have white, blue, or pink flowers and is also known by the common name Larkspur.',
+  answerList: ['Delphinium', 'Nerium', 'Digitalis', 'Aconitum'],
+  answer: 0
+},{
+  question :  '11. This poisonous species can have white, blue, or pink flowers and is also known by the common name Larkspur.',
+  answerList: ['Delphinium', 'Nerium', 'Digitalis', 'Aconitum'],
+  answer: 0
+},{
+  question :  '12. This poisonous species can have white, blue, or pink flowers and is also known by the common name Larkspur.',
+  answerList: ['Delphinium', 'Nerium', 'Digitalis', 'Aconitum'],
+  answer: 0
+}
+];
+
+var photoArray = ['question1', 'question2', 'question3', 'question4', 'question5', 'question6', 'question7', 'question8', 'question9', 'question10', 'question11', 'question12'];
+
+var messages = {
+  correct: "Yes, that's correct!",
+  incorrect: "No, that's incorrect.",
+  endTime: "Time has expired.",
+  finished: "Your score tally is..."
 }
 
-function gamePlay(){
-
-  $('.startBtn').on('click', function(){
-    //hide the start button
-    $('.startBtn').hide();
-    //removes all buttons with class startBtn
-    //$('button').remove('.startBtn');
-    timeCount();
-    quest1();
-    chooseCheckAnswer();
+// START BUTTON
+  $('.startBtn').on('click', function() {
+    $(this).hide();
+    newGame();
   });
+
+  $('#startOverBtn').on('click', function(){
+    $(this).hide();
+    newGame();
+  });
+
+  // PRIME GAME FOR NEW QUESTION
+function newGame(){
+  $('#finalMessage').empty();
+  $('#correctAnswers').empty();
+  $('#incorrectAnswers').empty();
+  $('#unanswered').empty();
+  currentQuestion = 0;
+  correctAnswer = 0;
+  incorrectAnswer = 0;
+  unanswered = 0;
+  newQuestion();
 }
 
-function timeCount (){
-  time = 7;
-  interval = setInterval(timeRemaining, 1000);
-  //add a div to btnContainer announcing Time Remaining
-  $('.btnContainer').append('<div class="timeRem">' + 'Time Remaining: ' + '<div class="timerCountDown"></div>' + '</div>');
-}
+function newQuestion() {
+  $('#message').empty();
+  $('#question').empty();
+  $('#correctAnswer').empty();
+  $('#photo').empty();
 
-//print the time remaining to the DOM. At time === 0, stop timer.
-function timeRemaining(){
-  //decrement time variable by one
-  time--;
-  //print time remaining to DOM
-  $('.timerCountDown').text(time + ' seconds');
-  //test & debug
-  console.log(time);
-  //once time reaches zero; time === 0
-    if(time === 0){
-    //test & debug
-    console.log ('time =' + time);
-    //stop time at zero
-    clearInterval(interval);
-    //remove button answers
-    $('.button').remove();
-    //remove question
-    $('.questionInput').remove('.timeRem');
-    //display correct answer
-    disCorAnsw();
+  // the 'answered' variable is initiated to true because there is a possibility that the user's time may expire whereupon 'answered' will then be marked as false.
+  answered = true;
+ 
+  // WRITE A NUMERIC PROGRESSION OF QUESTIONS to DOM
+  $('#currentQuestion').html('Question #' + (currentQuestion + 1) + ' of ' + triviaQuestions.length);
+  
+  //ADD QUESTION TO DOM
+  $('#question').append('<div class= "questionInput">' + triviaQuestions[currentQuestion].question + '</div>');
+  
+  // ADD ANSWER CHOICES TO DOM
+  for ( var i =0; i < 4; i++ ) {
+    
+    var choices = $('.answerButton');
+
+    choices.attr({'data-index' : i});
+
+    choices.addClass('thisChoice');
+    
+    if (i === 0) {
+      
+      $('#choice0').append('<span class="answerValue">' + triviaQuestions[currentQuestion].answerList[i] + '</span>');
+      
+    } 
+    else if (i === 1) {
+      
+      $('#choice1').append('<span class="answerValue">' + triviaQuestions[currentQuestion].answerList[i] + '</span>');
+      
     }
-  }
+      else if (i === 2) {
 
-    function disCorAnsw (){
-    //display correct answer: counter 1 = question 1; counter 2 = question 2;
-      if(qCounter === 1){
-        var newDiv2 = $('<div class="corAnsw">');
-        var correctAnswer = newDiv2.text('Time has expired' + 'The correct answer is ' + answers.answers1[0][3]);
-        $('.btnContainer').append(correctAnswer);
-        //remove the correct answer after 5 seconds and also removes the time remaining in order to start the timer again; advance to the next question
-        setTimeout(function()
-        {
-          $('div)').remove('.corAnsw');
-          $('div)').remove('.timeRem');
-          timeCount();
-          quest2();
-          chooseCheckAnswer();
-        }, 5000);
-      };
-    }
-
-//create newDiv with class= "quest q1"; append newDiv with current question into btn-container; set timer.
-function quest1(){
-  qCounter++;
-  //add question to question input div
-  $('.btnContainer').append('<div class= "questionInput">' + questions.q1 + '</div>');
-  //add answers choices
-  $('.btnContainer').append('<button class="answerVal" value=0>' + answers.answers1[0][1] + '</button>');
-  $('.btnContainer').append('<button class="answerVal" value=0>' + answers.answers1[0][2] + '</button>');
-  $('.btnContainer').append('<button class="answerVal" value=0>' + answers.answers1[0][3] + '</button>');
-  $('.btnContainer').append('<button class="answerVal" value=1>' + answers.answers1[0][4] + '</button>');
-}
-
-  function quest2(){
-    qCounter++;
-    //add question to question input div
-    $('.btnContainer').append('<div class= "questionInput">' + questions.q2 + '</div>');
-    //add answers choices
-    $('.btnContainer').append('<button class="answerVal" value=0>' + answers.answers2[0][1] + '</button>');
-    $('.btnContainer').append('<button class="answerVal" value=0>' + answers.answers2[0][2] + '</button>');
-    $('.btnContainer').append('<button class="answerVal" value=0>' + answers.answers2[0][3] + '</button>');
-    $('.btnContainer').append('<button class="answerVal" value=1>' + answers.answers2[0][4] + '</button>');
-
-  }
-
-    function chooseCheckAnswer(){ 
-      $('.answerButton').on('click', function(){
-        var checkCorrectAnswer = $(this).attr('value');
-        console.log(checkCorrectAnswer);
-        clearInterval(interval);
-        if(checkCorrectAnswer === 1){
-          console.log('Correct');
-          $('button').remove();
-          $('questionInput').remove();
+        $('#choice2').append('<span class="answerValue">' + triviaQuestions[currentQuestion].answerList[i] + '</span>');
         
-        }  
+      }
+      else if (i === 3 ) {
+        
+        $('#choice3').append('<span class="answerValue">' + triviaQuestions[currentQuestion].answerList[i] + '</span>');
+        
+      }
+    }
+
+    countdown();
+   
+    // WHEN USER SELECTS 
+    $('.thisChoice').on('click', function(){
+      userSelect = $(this).data('index');
+      clearInterval(time);
+      revealAnswer();
     });
   }
-
-  // var newDiv = $('<div class=" quest q1">');
-  // newDiv.html(questions.q4);
-  // $('.btnContainer').append(newDiv);
   
-  // intervalId = setInterval(timeCount, 1000);
+  function countdown () {
+    seconds = 30;
+    answered = true;
+    time = setInterval(displayCountdown, 1000);
+  }
+  
 
-
-
-//     }
-//     $('.btnContainer').append('correctAnswer');
+  //WRITE TIME to DOM
+  function displayCountdown() {
+    seconds--;
+    $('#timeRemaining').text('Time Remaining:');
+    $('#seconds').text(seconds +  ' seconds');
+   
+    console.log(seconds);
     
+      //CLEAR TIME at ZERO SECONDS; SET ANSWERED TO FALSE;
+      if(seconds === 0) {
+        console.log ('time remaining = ' + seconds);
+        clearInterval(time);
+        answered = false;
+        revealAnswer();
+  }
+}
 
-//   var timeDiv = $('<div class=" remainingTime">');
-//   timeDiv.html('Time Remaining' + time);
-//   console.log(time);
+function revealAnswer () {
+    $('#currentQuestion').empty();
+    
+    $('.questionInput').empty();
+    // $('.questionInput').remove();
+    $('.thisChoice').empty();
+    //remove answers
+    // $('.button').remove();
 
+    
+    var correctAnswerText = triviaQuestions[currentQuestion].answerList[triviaQuestions[currentQuestion].answer];
 
-//   //clear and stop time
+    var correctAnswerIndex = triviaQuestions[currentQuestion].answer;
+
+    $('#photo').html('<img src = "assets/images/' + photoArray[currentQuestion] + '.jpeg" width = "400px">');
+
+      // differentiate a correct answer from an incorrect answer from an unanswered answer then write to DOM
+      if ((userSelect == correctAnswerIndex) && (answered == true)) {
+          correctAnswer++;
+          $('message').html(messages.correct);
+        
+      } else if ((userSelect != correctAnswerIndex) && (answered == true)) {
+          incorrectAnswer++;
+          $('message').html(messages.incorrect);
+          $('#correctAnswer').html('The correct answer was: ' + correctAnswerText);
+      } else {
+        unanswered++;
+        $('message').html(messages.endTime);
+        $('#correctAnswer').html('The correct answer was: ' + correctAnswerText);
+        answered = true;
+      }
+
+      if (currentQuestion == (triviaQuestions.length - 1)) {
+        setTimeout(scoreboard, 5000)
+      } else {
+        currentQuestion++;
+        setTimeout(newQuestion, 5000);
+      }
+
+    }
+
+function scoreboard () {
+  $('#timeRemaining').empty();
+  $('#seconds').empty();
+  $('#message').empty();
+  $('#correctedAnswer').empty();
+  $('#photo').empty();
+
+  $('#finalMessage').html(messages.finished);
+  $('#correctAnswers').html('Number of Correct Answers: ' + correctAnswer);
+  $('#incorrectAnswers').html('Number of Incorrect Answers: ' + incorrectAnswer);
+  $('#unanswered').html('Unanswered: ', unanswered);
+  $('#startOverBtn').addClass('reset');
+	$('#startOverBtn').show();
+	$('#startOverBtn').html('Would you like to start over?');
+
+}
+
   
-//   //debug
-//   console.log(true);
-gamePlay();

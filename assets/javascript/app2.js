@@ -50,7 +50,7 @@ function gamePlay() {
     $('.startBtn').detach();
     //removes all buttons with class startBtn
     $('button').remove('.startBtn');
-    timeCount();
+    // timeCount();
     quest1();
     CheckAnswer();
   });
@@ -72,11 +72,11 @@ function timeRemaining() {
   //print time remaining to DOM
   $('.timerCountDown').text(time + ' seconds');
   //test & debug
-  console.log(time);
+    console.log('time: ', time);
   //once time reaches zero; time === 0
     if(time === 0) {
     //test & debug
-    console.log ('time =' + time);
+    console.log ('time remaining at zero: ' + time);
     //stop time at zero
     clearInterval(interval);
     //remove button answers
@@ -89,29 +89,35 @@ function timeRemaining() {
   }
 
 
+
+
+
+
+
+
+
+
+  
+
 //create newDiv with class= "quest q1"; append newDiv with current question into btn-container; set timer.
 function quest1() { 
   qCounter++;
   //add question to question input div
   $('#question').append('<div class= "questionInput">' + questions.q1 + '</div>');
   //add answers choices
-  $('#choice0').append('<button class="answerVal" value=1>' + answers.answers1[0]['a'] + '</button>');
-  $('#choice1').append('<button class="answerVal" value=0>' + answers.answers1[0]['b'] + '</button>');
-  $('#choice2').append('<button class="answerVal" value=0>' + answers.answers1[0]['c'] + '</button>');
-  $('#choice3').append('<button class="answerVal" value=0>' + answers.answers1[0]['d'] + '</button>');
+  $('#choice0').append('<span class="answerVal" value=1>' + answers.answers1[0]['a'] + '</span>');
+  $('#choice1').append('<span class="answerVal" value=0>' + answers.answers1[0]['b'] + '</span>');
+  $('#choice2').append('<span class="answerVal" value=0>' + answers.answers1[0]['c'] + '</span>');
+  $('#choice3').append('<span class="answerVal" value=0>' + answers.answers1[0]['d'] + '</span>');
 
 }
 
-$('.answerButton')
-console.log($('.answerButton'));
-
-
-
+console.log('#choice0: ', $('choice0'));
 
 function CheckAnswer(){ 
-  $('.answerButton', '.answerVal').on('click', function() {
-    var checkCorrectAnswer = $(this).attr('value');
-      console.log('check Corret Answer Value: ', checkCorrectAnswer);
+  $('.answerButton').on('click', function(event) {
+    var checkCorrectAnswer = $(this).value;
+      console.log('check Correct Answer Value: ', checkCorrectAnswer);
     clearInterval(interval);
     if(checkCorrectAnswer == 1) {
       console.log('Correct');
@@ -119,7 +125,8 @@ function CheckAnswer(){
       console.log($('.answerVal').remove());
       $('questionInput').remove();
     
-    }  
+    } 
+     
 });
 }
 

@@ -15,13 +15,16 @@
       <button type="button" class="btn btn-default btn-lg btn-primary startBtn">START</button>
     </div>
     
-    <div class="butttonContainer">
-        <p id="timeRemaining"></p>
+    <div class="announcement">
+        <p id="currentQuestion"></p>
+        <p id="timeRemaining"> </p>
+        <p id="seconds"></p>
     </div>
       
       <hr style="margin-bottom: 20px">
 
       <div id="trivia">
+        <!-- Question page -->
         <p id="question"></p>
         <div class="btnContainer">
           <button class="answerButton" id="choice0"></button>
@@ -29,19 +32,30 @@
           <button class="answerButton" id="choice2"></button>
           <button class="answerButton" id="choice3"></button>
         </div>
-    </div>
+      </div>
 
       <hr style="margin-top: 50px">
       
       <footer>
-        <p id ="progress">Question X of Y</p>
+          <!-- Answer Page -->
+          <div id=message></div>
+          <div id=correctedAnswer></div>
+          <div id=photo></div>
+
+         <!-- Scoreboard -->
+         <div id=finalMessage></div>
+         <div id=correctAnswers></div>
+         <div id=incorrectAnswers></div>
+         <div id=unanswered></div>
+         <div id='startOverBtn'></div>
+
       </footer>
 </div>
 
   <!-- <js link> -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous" ></script>
   <script src="assets/javascript/triviaController.js"></script>
-  <script src="assets/javascript/app2.js"></script>
+  <script src="assets/javascript/app.js"></script>
   <!-- <script src="assets/javascript/questions.js"></script> -->
   
 
